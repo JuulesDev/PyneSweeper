@@ -1,14 +1,21 @@
-from pprint import pprint
+from random import randint
+import time
 
 from minesweeper import MinesweeperGame
 import cli
 
 def main():
-  game = MinesweeperGame((56, 24), 0.2)
+  # For testing purposes. Not fully working.
+  W, H = 18, 11 
+  game = MinesweeperGame((W, H), 0.1)
+
+  while not game.is_game_over:
+    board = game.get_visible_board()
+    cli.print_board(board)
+    game.play(randint(0, W), randint(0, H), True)
+    time.sleep(.5)
 
   board = game.get_visible_board()
-  # pprint(game._board_values)
-
   cli.print_board(board)
 
 
